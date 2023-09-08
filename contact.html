@@ -47,18 +47,47 @@
                         </p>
                         </div>
                         <div class="two-form"> 
-                            <form border="10px">
+                            <form border="10px" onsubmit="validateForm()">
                                 <h1 class="h1-form">Fill The  Form</h1><br><br><br>
                                 <label>Your Full Names</label><br><br>
-                                <input type="text"><br><br>
+                                <input id="fullName" type="text"><br><br>
                                 <label>Email Address</label><br><br>
-                                <input type="text" ><br><br>
+                                <input id="email" type="text" ><br><br>
                                 <label>Your Message</label><br><br>
-                                <textarea type="text"> </textarea><br><br><br>
-                                <button type="button" value="Send"> Send message</button>
+                                <textarea id="message" type="text"> </textarea><br><br><br>
+                                <button id="sendMessage" type="button" value="Send"> Send message</button>
                             </form>
                         </div>
                     </div>
+                    <script>
+                      function validateForm() {
+  // Get the values of the form fields
+  console.log("hello world")
+  var fullName = document.getElementById("fullName").value;
+  var email = document.getElementById("email").value;
+  var message = document.getElementById("message").value;
+
+   // Check if all the required fields are filled in
+  if (fullName == "" || email == "" || message == "") {
+    alert("Please fill in all the required fields.");
+    return false;
+  }
+
+  // Check if the email address is valid
+  var re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!re.test(email)) {
+    alert("Please enter a valid email address.");
+    return false;
+  }
+  alert("data sent successfull")
+
+  // The form is valid, so return true
+  return true;
+}
+
+// Add an event listener to the submit button
+document.getElementById("sendMessage").addEventListener("click", validateForm);
+                    </script>
 
   </body>
 </html>
